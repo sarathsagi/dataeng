@@ -51,6 +51,7 @@ Data modeling with DBT (Data Build Tool) is a method for transforming and struct
   - visitor_id (Primary Key)
   - visitor_name
   - location
+  - date
   - device_type
   - source (email, social, SEM)
 
@@ -63,7 +64,7 @@ Data modeling with DBT (Data Build Tool) is a method for transforming and struct
   - content_type
   - content_title
   - author
-  - Category
+  - category
 
 ### dim_ad_affiliate
 
@@ -104,9 +105,9 @@ Data modeling with DBT (Data Build Tool) is a method for transforming and struct
 - **Columns**:
   - activity_id (Primary Key)
   - visitor_id (Foreign Key)
-  - date_id (Foreign Key)
   - content_id (Foreign Key)
   - source
+  - date
   - activity_type (page view, click, etc.)
 
 ### fact_conversions
@@ -116,7 +117,7 @@ Data modeling with DBT (Data Build Tool) is a method for transforming and struct
 - **Columns**:
   - conversion_id (Primary Key)
   - visitor_id (Foreign Key)
-  - date_id (Foreign Key)
+  - date
   - ad_affiliate_id (Foreign Key)
   - subscription_status (converted or not)
 
@@ -127,7 +128,7 @@ Data modeling with DBT (Data Build Tool) is a method for transforming and struct
 - **Columns**:
   - retention_id (Primary Key)
   - visitor_id (Foreign Key)
-  - date_id (Foreign Key)
+  - date
   - return_visit (yes or no)
 
 ### fact_social_sentiment
@@ -137,7 +138,7 @@ Data modeling with DBT (Data Build Tool) is a method for transforming and struct
 - **Columns**:
   - sentiment_id (Primary Key)
   - social_media_id (Foreign Key)
-  - date_id (Foreign Key)
+  - date
   - sentiment_score
 
 
