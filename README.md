@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This document provides a comprehensive overview of the architecture, data sources, data processing pipelines, data modeling, and data analysis approaches used in the HappyTimes project.
+This document provides a comprehensive overview of the architecture, data sources, data processing pipelines, data modeling, and data analysis approaches used in HappyTimes.
 
 ## Architecture
 
