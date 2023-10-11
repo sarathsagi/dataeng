@@ -1,4 +1,4 @@
-# HappyTimes Architecture Document
+# HappyTimes Data Architecture Document
 
 ## Introduction
 
@@ -205,32 +205,25 @@ Data observability is essential for maintaining data quality, tracking data line
 
 QuickSight, Redash, Superset, and Looker are versatile, cloud-agnostic data visualization and ad hoc querying tools. QuickSight, despite being part of AWS, connects to multiple data sources, enabling the creation of interactive reports and dashboards. Redash, an open-source platform, offers simplicity and flexibility, ideal for diverse data sources. Superset, part of the Apache ecosystem, supports various databases and data warehouses, making it a powerful tool for interactive dashboard creation. Looker, now under Google Cloud, remains cloud-agnostic and excels in data exploration and modeling for ad hoc querying and visualization across different cloud platforms. These tools each offer unique features and adaptability to various data environments, making them valuable options for data-driven organizations.
 
-## Leveraging HappyTimes Architecture for ML Use Cases
+## Leveraging HappyTimes Architecture for Analytics and ML Use Cases
 
-The HappyTimes architecture and data processing pipelines provide a strong data infrastructure that can be harnessed for a range of machine learning (ML) use cases. Below, we outline how to leverage the existing architecture for specific ML scenarios:
+The HappyTimes data architecture and data processing pipelines provide a strong data infrastructure that can be harnessed for a range of analytics and machine learning (ML) use cases. Below, we outline how to leverage the existing architecture for specific Analytics and ML scenarios:
 
-### Customer Segmentation
+## Analytics Use Cases:
 
-- Utilize the data modeling and data processing components to create feature-rich datasets.
-- Leverage fact tables, such as `fact_visitor_activity`, to capture customer interactions.
-- Implement ML algorithms for segmentation separately, making use of the structured data.
+**Business Intelligence and Reporting:**
+- Utilize the data processing pipelines and BI tools to create interactive dashboards and reports for monitoring key performance indicators (KPIs) and business metrics. This can help stakeholders make data-driven decisions and gain insights into the performance of the organization.
 
-### Customer Churn Prediction
+**Customer Analytics and Segmentation:**
+- Leverage the structured data from fact tables like `fact_visitor_activity` and dimension tables like `dim_visitor` to perform customer analytics. Segment customers based on their interactions, demographics, and behaviors. This can help in tailoring marketing strategies and enhancing customer experiences.
 
-- Collect historical customer behavior data from fact tables, e.g., `fact_visitor_activity`.
-- Design and implement a dedicated churn prediction model using ML techniques to analyze customer activities over time.
+## Machine Learning Use Cases:
 
-### Fraud Detection in E-commerce Transactions
+**Customer Churn Prediction:**
+- Use historical customer behavior data from `fact_visitor_activity` and `dim_subscription` to build a machine learning model for customer churn prediction. By analyzing customer interactions and subscription data, the model can identify factors contributing to churn and enable proactive retention strategies.
 
-- Extend the data processing pipelines to incorporate fraud detection logic for real-time or batch processing.
-- Implement fraud detection algorithms, such as anomaly detection or rule-based systems, as an additional step.
+**Product Recommendations:**
+- Implement a recommendation system using ML techniques to provide personalized product recommendations to users based on their past interactions and preferences. This can enhance the user experience and boost sales by increasing cross-selling and upselling.
 
-### Product Matching
-
-- Harness historical user interaction data from fact tables like `fact_visitor_activity` to gain insights into user preferences and behavior.
-- Develop product matching algorithms, such as collaborative filtering or content-based recommendations, as standalone components.
-
-### Demand Forecasting
-
-- Integrate forecasting models into the existing data processing pipelines for demand forecasting.
-- Apply time series forecasting models to historical data from fact tables to predict future demand.
+**Demand Forecasting:**
+- Apply time series forecasting models to historical data from fact tables like `fact_visitor_activity` and `dim_content` to predict future demand for products or content. This forecasting can optimize inventory management, production planning, and content distribution.
