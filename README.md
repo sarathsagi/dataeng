@@ -1,5 +1,8 @@
 # HappyTimes Architecture Document
 
+![image](https://github.com/sarathsagi/dataeng/assets/13203694/81261c7e-39bd-46af-8e94-e70884b415d5)
+
+
 ## Data Sources:
 
 - **RDBMS**: The system collects data from relational databases using the Debezium platform for change data capture (CDC). This data is streamed to Apache Kafka for real-time processing and analytics.
