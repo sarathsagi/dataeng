@@ -31,31 +31,109 @@
 - Python with libraries like pysftp or paramiko is used to establish an SFTP connection to retrieve data.
 - The downloaded files are uploaded to a data lake using libraries like boto3 or pywebhdfs, ensuring automation, error handling, and logging for a seamless data transfer process.
 
-## Data Modeling:
+# Data Modeling
 
-Data modeling is performed using DBT (Data Build Tool) to structure and transform data. This includes defining SQL-based transformation models, specifying materializations, writing tests, and documentation to ensure data quality. DBT automates these transformations, supports version control, and CI/CD for efficient data transformation and modeling.
+Data modeling with DBT (Data Build Tool) is a method for transforming and structuring data in modern data stacks. It involves defining SQL-based transformation models, specifying materializations (e.g., tables or views), and writing tests and documentation to ensure data quality and clarity. DBT automates the execution of these transformations, can be scheduled for regular updates, and supports version control and CI/CD for managing changes. The result is a streamlined, collaborative approach to data transformation and modeling, making data analysis more efficient and manageable.
 
-### Dimension Tables:
+## Dimension Tables:
 
-- **Visitor Dimension**: Stores information about individual visitors, including attributes like visitor ID, Name, location, device type, and source of visit (email, social, SEM).
+### dim_visitor
 
-- **Content Dimension**: Contains details about the content on your site, such as content ID, type, title, author, and category.
+- **Description**: This table stores information about individual visitors, including attributes like visitor ID, Name, location, device type, and source of visit (email, social, SEM).
 
-- **Ad/Affiliate Dimension**: Includes information about ads and affiliate links, such as ad/affiliate ID, campaign, source, and ad type.
+- **Columns**:
+  - visitor_id (Primary Key)
+  - visitor_name
+  - location
+  - device_type
+  - source (email, social, SEM)
 
-- **Subscription Dimension**: Stores data related to subscriptions, including subscriber ID, subscription type, start date, and end date.
+### dim_content
 
-- **Social Media Dimension**: Contains information about social media outlets, such as outlet ID, outlet name, and sentiment category.
+- **Description**: Contains details about the content on your site, such as content ID, type (article, video, etc.), title, author, and category.
 
-### Fact Tables:
+- **Columns**:
+  - content_id (Primary Key)
+  - content_type
+  - content_title
+  - author
+  - Category
 
-- **Visitor Activity Fact Table**: Captures visitor interactions with your site, including page views, clicks, and other activities.
+### dim_ad_affiliate
 
-- **Conversion Fact Table**: Tracks conversions and conversion rates, including data on clicked ads or affiliate links and subscription status.
+- **Description**: Includes information about ads and affiliate links, such as ad/affiliate ID, campaign, source, and ad type.
 
-- **Retention Fact Table**: Records site retention and return visits, indicating whether it was a return visit.
+- **Columns**:
+  - ad_affiliate_id (Primary Key)
+  - campaign
+  - source
+  - ad_type
 
-- **Social Sentiment Fact Table**: Logs social media sentiment data, including outlet ID, sentiment category, and sentiment score.
+### dim_subscription
+
+- **Description**: Stores data related to subscriptions, including subscriber ID, subscription type, start date, and end date.
+
+- **Columns**:
+  - subscription_id (Primary Key)
+  - subscriber_id
+  - subscription_type
+  - start_date
+  - end_date
+
+### dim_social_media
+
+- **Description**: Contains information about social media outlets, such as outlet ID, outlet name, and sentiment category (positive, negative, neutral).
+
+- **Columns**:
+  - social_media_id (Primary Key)
+  - social_media_name
+  - sentiment_category
+
+## Fact Tables:
+
+### fact_visitor_activity
+
+- **Description**: This table captures visitor interactions with your site, including page views, clicks, and other relevant activities. Fields may include visitor ID, date, content ID, and source.
+
+- **Columns**:
+  - activity_id (Primary Key)
+  - visitor_id (Foreign Key)
+  - date_id (Foreign Key)
+  - content_id (Foreign Key)
+  - source
+  - activity_type (page view, click, etc.)
+
+### fact_conversions
+
+- **Description**: Tracks conversions and conversion rates. It includes data on which ads or affiliate links were clicked, and if the visitor subsequently subscribed. Fields may include visitor ID, date, ad/affiliate ID, and subscription status.
+
+- **Columns**:
+  - conversion_id (Primary Key)
+  - visitor_id (Foreign Key)
+  - date_id (Foreign Key)
+  - ad_affiliate_id (Foreign Key)
+  - subscription_status (converted or not)
+
+### fact_retentions
+
+- **Description**: Records site retention and return visits. It should include visitor ID, date, and a flag indicating whether it was a return visit.
+
+- **Columns**:
+  - retention_id (Primary Key)
+  - visitor_id (Foreign Key)
+  - date_id (Foreign Key)
+  - return_visit (yes or no)
+
+### fact_social_sentiment
+
+- **Description**: Logs social media sentiment data. It includes outlet ID, date, and sentiment score.
+
+- **Columns**:
+  - sentiment_id (Primary Key)
+  - social_media_id (Foreign Key)
+  - date_id (Foreign Key)
+  - sentiment_score
+
 
 ## Funnel Analysis:
 
