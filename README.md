@@ -139,7 +139,7 @@ Data modeling with DBT (Data Build Tool) is a method for transforming and struct
 
 - **Awareness**: To count the number of visitors by source:
 ```
-SELECT source, COUNT(*) as visitor_count FROM visitor_count GROUP BY source;
+SELECT source, COUNT(*) as visitor_count FROM fact_visitor_activity GROUP BY source;
 ```
 
 - **Consideration**: Find the most popular content among subscribers.
