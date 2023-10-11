@@ -1,5 +1,11 @@
 # HappyTimes Architecture Document
 
+## Introduction
+
+This document provides a comprehensive overview of the architecture, data sources, data processing pipelines, data modeling, and data analysis approaches used in the HappyTimes project.
+
+## Architecture
+
 ![image](https://github.com/sarathsagi/dataeng/assets/13203694/81261c7e-39bd-46af-8e94-e70884b415d5)
 
 
@@ -31,7 +37,7 @@
 - Python with libraries like pysftp or paramiko is used to establish an SFTP connection to retrieve data.
 - The downloaded files are uploaded to a data lake using libraries like boto3 or pywebhdfs, ensuring automation, error handling, and logging for a seamless data transfer process.
 
-# Data Modeling
+## Data Modeling
 
 Data modeling with DBT (Data Build Tool) is a method for transforming and structuring data in modern data stacks. It involves defining SQL-based transformation models, specifying materializations (e.g., tables or views), and writing tests and documentation to ensure data quality and clarity. DBT automates the execution of these transformations, can be scheduled for regular updates, and supports version control and CI/CD for managing changes. The result is a streamlined, collaborative approach to data transformation and modeling, making data analysis more efficient and manageable.
 
