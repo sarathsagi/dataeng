@@ -137,15 +137,54 @@ Data modeling with DBT (Data Build Tool) is a method for transforming and struct
 
 ## Funnel Analysis:
 
-- **Awareness**: Count the number of visitors by source.
+- **Awareness**: To count the number of visitors by source:
+```
+SELECT source, COUNT(*) as visitor_count FROM visitor_count GROUP BY source;
+```
 
 - **Consideration**: Find the most popular content among subscribers.
+```
+SELECT c.content_title, COUNT(*) as interaction_count
+FROM fact_visitor_activity va
+JOIN dim_content c ON va.content_id = c.content_id
+JOIN dim_subscription s ON va.visitor_id = s.subscriber_id
+WHERE s.subscription_type = 'subscriber'
+GROUP BY c.content_title
+ORDER BY interaction_count DESC;
+
+```
 
 - **Conversion**: Calculate conversion rates for each ad/affiliate campaign.
+```
+SELECT aa.campaign, 
+       SUM(CASE WHEN cf.subscription_status = 'converted' THEN 1 ELSE 0 END) AS conversions,
+       COUNT(*) AS clicks,
+       (SUM(CASE WHEN cf.subscription_status = 'converted' THEN 1 ELSE 0 END) / COUNT(*)) AS conversion_rate
+FROM fact_conversions cf
+JOIN dim_ad_affiliate aa ON cf.ad_affiliate_id = aa.ad_affiliate_id
+GROUP BY aa.campaign;
+
+```
 
 - **Loyalty**: Track retention rates over time.
+```
+SELECT d.year, d.month, 
+       SUM(CASE WHEN rf.return_visit = 'yes' THEN 1 ELSE 0 END) AS returning_visitors,
+       COUNT(*) AS total_visitors,
+       (SUM(CASE WHEN rf.return_visit = 'yes' THEN 1 ELSE 0 END) / COUNT(*)) AS retention_rate
+FROM RetentionFact rf
+JOIN DateDimension d ON rf.date_id = d.date_id
+GROUP BY d.year, d.month;
+
+```
 
 - **Advocacy**: Analyze social sentiment on a specific social media outlet.
+```
+SELECT sm.social_media_name, ss.sentiment_category, COUNT(*) as sentiment_count
+FROM fact_social_sentiment ss
+JOIN dim_social_media sm ON ss.social_media_id = sm.social_media_id
+GROUP BY sm.social_media_name, ss.sentiment_category;
+```
 
 ## Data Orchestration:
 
