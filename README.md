@@ -192,4 +192,8 @@ Data pipeline orchestration is performed using Apache Airflow. It involves break
 
 ## Data Observability:
 
-Data observability is essential for maintaining data quality, tracking data lineage, and promptly detecting anomalies or issues in the data pipeline. Data observability tools enhance collaboration, support data governance, and provide a basis for trust in the insights derived from the data pipeline.
+Data observability is essential for maintaining data quality, tracking data lineage, and promptly detecting anomalies or issues in the data pipeline. Data observability tools enhance collaboration, support data governance, and provide a basis for trust in the insights derived from the data pipeline. Tools like Monte Carlo/ Anadot can be used for data observability.
+
+## Data Visualization(recommendations):
+
+QuickSight, Redash, Superset, and Looker are versatile, cloud-agnostic data visualization and ad hoc querying tools. QuickSight, despite being part of AWS, connects to multiple data sources, enabling the creation of interactive reports and dashboards. Redash, an open-source platform, offers simplicity and flexibility, ideal for diverse data sources. Superset, part of the Apache ecosystem, supports various databases and data warehouses, making it a powerful tool for interactive dashboard creation. Looker, now under Google Cloud, remains cloud-agnostic and excels in data exploration and modeling for ad hoc querying and visualization across different cloud platforms. These tools each offer unique features and adaptability to various data environments, making them valuable options for data-driven organizations.
