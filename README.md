@@ -199,7 +199,13 @@ Data pipeline orchestration is performed using Apache Airflow. It involves break
 
 ## Data Observability:
 
-Data observability is essential for maintaining data quality, tracking data lineage, and promptly detecting anomalies or issues in the data pipeline. Data observability tools enhance collaboration, support data governance, and provide a basis for trust in the insights derived from the data pipeline. Tools like Monte Carlo/ Anadot can be used for data observability.
+Data observability is essential for maintaining data quality, tracking data lineage, and promptly detecting anomalies or issues in the data pipeline. Data observability tools enhance collaboration, support data governance, and provide a basis for trust in the insights derived from the data pipeline. Tools like Monte Carlo/ Anadot can be used for data observability. Below are the catogories you should focus in Data Observability,
+- Freshness - how up to date is the data
+- Distribution - field/ column level, range of value, null %, distribution,
+- Volume - row count, byte size
+- Schema - schema change
+- Lineage - metadata about assets, bring story together
+
 
 ## Data Visualization(recommendations):
 
